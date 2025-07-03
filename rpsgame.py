@@ -1,4 +1,5 @@
 import random
+import streamlit as st
 name = input("Enter username:");
 
 point_user , point_comp , i = 0 , 0 , 0
@@ -35,6 +36,40 @@ if(point_user > point_comp):
 elif(point_user == point_comp):
     print("TIE!!");
     print(f"{name}'s points and my points: {point_user}!")
+ import streamlit as st
+import random
+
+st.set_page_config(page_title="Rock Paper Scissors", page_icon="✊🖐✌", layout="centered")
+st.title("🎮 Rock Paper Scissors")
+
+st.write("Choose your move:")
+
+user_choice = st.radio(
+    "Your Move",
+    options=["Rock", "Paper", "Scissors"],
+    horizontal=True
+)
+
+if st.button("Play"):
+    choices = ["Rock", "Paper", "Scissors"]
+    computer_choice = random.choice(choices)
+
+    st.write(f"🧑 You chose: **{user_choice}**")
+    st.write(f"💻 Computer chose: **{computer_choice}**")
+
+    if user_choice == computer_choice:
+        st.success("It's a draw!")
+    elif (user_choice == "Rock" and computer_choice == "Scissors") or \
+         (user_choice == "Paper" and computer_choice == "Rock") or \
+         (user_choice == "Scissors" and computer_choice == "Paper"):
+        st.balloons()
+        st.success("You win! 🎉")
+    else:
+        st.error("You lose! 😢")
+
+st.markdown("---")
+st.caption("Made with ❤️ using Streamlit")
+
 
 
 else:
